@@ -72,8 +72,8 @@ controllers, since we already have them set up.
 
 ## Components (15 min / 0:25)
 
-The way we've been building our pages so far is using the layout system in
-handlebars. We display a whole page at a time, and in order to display an
+The way we've been building our pages so far is using
+HTML or simply rendering JSON data. We display a whole page at a time, and in order to display an
 update, we have to reload the entire page.
 
 A core part of the React philosophy is to build everything out using components,
@@ -85,23 +85,8 @@ containing other components. Yes, components can hold other components.
 
 ![Templates Page](images/templates-page.png)
 
-Going back to how handlebars worked, we had our `layout.hbs` file and a bunch of
-different files we called `views`.
-
-Our layout file might have looked something like this:
-
-```hbs
-<html>
-  <head>
-  </head>
-  <body>
-    {{{ body }}}
-  </body>
-</html>
-```
-
-Depending on the route we were on, the view files were rendered in place of the
-`{{body}}` placeholder and that was just fine. But it's not the only way.
+Going back to how our backend worked, we rendered data based the route we were on.
+That's just fine, but it's not the only way.
 
 ![Components Page](images/components-page.png)
 
@@ -112,8 +97,6 @@ its own file), and we can reuse them as many times as we want, on different
 pages.
 
 When we need to make updates, we only have to make those updates in one file.
-
-If you used partials in handlebars, the idea is similar.
 
 ### Examples!
 
