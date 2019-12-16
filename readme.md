@@ -22,7 +22,7 @@
   browser only. It makes building complex user interfaces easier.
 - Frameworks can help standardize code, give you additional functionality and
   performance, and can help get your code off the ground faster.
-- There are [many](https://2018.stateofjs.com/) front end frameworks
+- There are [many](https://2018.stateofjs.com/front-end-frameworks/overview/) front end frameworks
   and each go about solving problems of how state is managed, updated, and
   displayed on the page in their own way, but there are many commonalities.
 - There is a lot of debate over whether frontend frameworks count as frameworks
