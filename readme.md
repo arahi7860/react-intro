@@ -195,8 +195,9 @@ You can also set up all this yourself, but for now `create-react-app` allows us
 to worry more about our code and less about configuration.
 
 ```bash
-$ npm i -g create-react-app
-$ create-react-app blog-app
+$ npm i -g npx
+$ npx i create-react-app
+$ npx create-react-app blog-app
 $ cd blog-app
 $ code .
 $ npm run start
