@@ -477,7 +477,6 @@ blog post?
 - Render these properties using a Post component.
 - The composition of your Post is up to you.
 
-### [Solution](https://git.generalassemb.ly/seir-1118/simple-react-blog/tree/post-solution)
 
 ## Nested Components (30 minutes / 2:25)
 
@@ -538,8 +537,6 @@ class Post extends Component {
 export default Post;
 ```
 
-**[Comment Solution](https://git.generalassemb.ly/seir-1118/simple-react-blog/tree/comment-solution)**
-
 > **Note**: We could put all of our code in one file, but it's considered a good
 > practice to break components out into different files to help practice
 > separation of concerns. Just remember to **export** each component from its
@@ -572,8 +569,6 @@ class Post extends Component {
   }
 }
 ```
-
-**[Final solution](https://git.generalassemb.ly/seir-1118/simple-react-blog/tree/final-solution)**
 
 ---
 
