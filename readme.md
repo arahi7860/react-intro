@@ -16,7 +16,7 @@
 
 - A framework is software providing generic functionality and structure that
   serves as foundation to build and deploy applications.
-- Express is a framework that runs on the server, receives incoming requests
+- Express, which you'll learn next unit, is a framework that runs on the server, receives incoming requests
   from the client, performs some work that you have defined, and returns a
   response to the client. React is a front-end framework, which runs in the
   browser only. It makes building complex user interfaces easier.
@@ -57,19 +57,6 @@ how..
 > [here's an introduction from React.js Conf 2015](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510).
 > Recommend starting around the 8:35 mark and watching until 16:30.
 
-### React in MVC
-
-React can be thought of as the V in MVC.
-
-React will work with any back-end language, but for project 3 and in our
-in-class examples we will be using Mongoose and Express for the models and
-controllers, since we already have them set up.
-
-<details>
-  <summary><strong>What is the role of a "view" in a front-end Javascript application?</strong></summary>
-  The visual template the user sees, often populated with data from our models.
-</details>
-
 ## Components
 
 The way we've been building our pages so far is using
@@ -84,9 +71,6 @@ purpose. It can be as little as a single `<input>` field or as big as a sidebar
 containing other components. Yes, components can hold other components.
 
 ![Templates Page](images/templates-page.png)
-
-Going back to how our backend worked, we rendered data based the route we were on.
-That's just fine, but it's not the only way.
 
 ![Components Page](images/components-page.png)
 
