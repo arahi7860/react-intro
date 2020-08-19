@@ -219,17 +219,27 @@ Along with installing the necessary dependencies, it creates an initial app
 skeleton that looks like this:
 
 ```sh
-├──  README.md
-├──  favicon.ico
-├──  index.html
-├──  node_modules
-├──  package.json
-└──  src
-    ├──  App.css
-    ├──  App.js
-    ├──  index.css
-    ├──  index.js
-    └──  logo.svg
+.
+├── README.md
+├── node_modules
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── serviceWorker.js
+    └── setupTests.js
 ```
 
 Most of the important files, which are primarily the ones where we will be
