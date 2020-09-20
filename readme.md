@@ -1,3 +1,5 @@
+[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+
 # Intro to React.js
 
 ![react-logo](./images/react-white-logo.png)
@@ -157,6 +159,8 @@ As you're drawing this out, think about the following questions...
 - Are there any components that share the same structure?
 - Of these similar components, what is different about them?
 
+
+
 ## Initial Setup
 
 In order to create a new project and to get our development environment setup,
@@ -176,355 +180,372 @@ compatible with older browsers. It also includes Autoprefixer for CSS
 compatibility, ESLint for linting, and Jest for testing.
 
 You can also set up all this yourself, but for now `create-react-app` allows us
-to worry more about our code and less about configuration.
+to worry more about our code and less about configuration:
 
-```bash
-$ npm i -g npx
-$ npx create-react-app blog-app
-$ cd blog-app
-$ code .
-$ npm run start
+The [offical React docs](https://reactjs.org/docs/create-a-new-react-app.html)
+suggest using `npx`, a modern javascript package runner, to run
+`create-react-app`. We can install `npx` with the following command:
+
+```sh
+➜ npm i -g npx
 ```
 
-> Here you will begin setting up a blog app that you will continue working on
-> during this lesson's exercises. For demonstration purposes, We will be
-> creating a simple "hello world" app.
+The benefits here are that you do not need to install `create-react-app`
+locally, and you will always be installing the latest version of
+`create-react-app` when you start a new project.
 
-After running `$ npm run start`, we can view the app at `http://localhost:3000`
+When creating new projects, you can run:
+
+```sh
+➜ npx create-react-app blog-app
+➜ cd blog-app
+➜ code .
+➜ npm run start
+```
+
+### React Blog
+
+Here you will begin setting up a blog app that you will continue working on
+during this lesson's exercises. For demonstration purposes, We will be
+creating a simple "hello world" app.
+
+After running `npm run start`, we can view the app at `http://localhost:3000`
 
 `create-react-app` provides us with a lot of nice tools and configuration to
 start writing React. It isn't required but it makes things easier, and we'll use
 it a lot throughout the rest of this unit.
 
 Along with installing the necessary dependencies, it creates an initial app
-skeleton that looks like this...
+skeleton that looks like this:
 
-```bash
-├──README.md
-├──  favicon.ico
-├──  index.html
-├──  node_modules
-├──  package.json
-└──  src
-    ├──  App.css
-    ├──  App.js
-    ├──  index.css
-    ├──  index.js
-    └──  logo.svg
+```sh
+.
+├── README.md
+├── node_modules
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── serviceWorker.js
+    └── setupTests.js
 ```
 
 Most of the important files, which are primarily the ones where we will be
 working today, are in the `/src` directory.
 
+## You Do: Explore the File System
+
 Take some time and look at what's been generated. Specifically look in `App.js`
 and `index.js`
 
-## Break
+## Your First Taste of React
 
----
+The basic unit you'll be working with in React is a **component**. Components
+can be thought of as functional elements (literally a JS function) that take in
+data and as a result, produce a dynamic UI.
 
-### We Do: Hello World - A Very Basic Component
+> Your user interface is a _function_ of your data
 
-The basic unit you'll be working with in ReactJS is a **component**.
-
-- Components can be thought of as functional elements (literally a JS function)
-  that take in data and as a result, produce a dynamic UI.
-
-Throughout class we have separated HTML, CSS and Javascript in different files.
-
-- With components, the lines between those three become a bit blurry.
-- Instead, we organize our web apps according to small, reusable components that
-  define their own content, presentation and behavior.
+Throughout this course so far we have separated HTML, CSS and Javascript in
+different files. With components, the lines between those three become a bit
+blurry. Instead, we organize our web apps according to small, reusable
+components that define their own content, presentation and behavior.
 
 What does a component look like? Let's start with a simple "Hello World"
 example.
 
-To start, in our `/src/App.js` file, let's remove ALL the contents and in its
-place add this component definition...
+We'll start in our `/src/App.js` file, where we should some some code that looks
+like this:
 
 ```jsx
-// bring in React and Component instance from React
-import React, { Component } from "react";
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-// define our Hello component
-class Hello extends Component {
-  // what should the component render
-  render() {
-    // Make sure to return some UI
-    return <h1>Hello World!</h1>;
-  }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
-export default Hello;
+export default App;
 ```
 
-> Note: We're using a more modern version of javascript called ES6. It's still
-> javascript, but it has some additional features. We can use them without fear
-> because create-react-app has configured everything for us.
+Let's break down the things we see here.
 
-Let's break down the things we see here...
+1. `import React from 'react';` - this is how we add and use React. We have to
+   import React like this at the top of every component JS file.
+1. `function App()` - this is a function (just like all the functions you've
+   seen before) that is a React component. What makes it a component? The fact
+   that it's using React to `return` JSX (more on that later).
+1. `return ( ... )` - Components **must** return JSX, an XML/HTML -like syntax
+   for describe a piece of UI.
+1. `export default App` - this is how we _export_ a component, so that we can
+   import it elsewhere
 
-##### `class Hello`
+The above is how we _define_ a component, how do we render it to the browser?
 
-This is the component we're creating. In this example, we are creating a "Hello"
-component.
+For that, we have to look at `index.js`:
 
-##### `extends Component`
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-This is the React library class we inherit from to create our component
-definition. Remember our OOJS lessons about extending classes?
+ReactDOM.render(<App />, document.getElementById("root"));
+```
 
-##### `render()`
+An analogy here is the way we work with functions. First you _define_ a
+function, then you _invoke_ it. In React, we _define_ a component, then we
+_render_ it.
 
-Every component has, at minimum, a render method. It generates a **Virtual DOM**
-node that will be added to the actual DOM.
+We _define_ components as functions (or classes - more on that later) and render
+with the HTML-like syntax called JSX.
 
-Looks just like HTML right!?
+### Aside: JSX
 
-##### `export default Hello`
-
-This exposes the Hello class to other files which import from the App.js file.
-The `default` keyword means that any import that's name doesn't match a named
-export will automatically revert to this. Only one default is allowed per file.
-
-### JSX
-
-> Hey you got your html in my javascript!
->
-> You got your javascript in my html!
->
-> (https://youtu.be/O7oD_oX-Gio?t=5s)
-
-Let's talk about the value that the render method returns. It looks an awful lot
-like an HTML heading, but it's not. We often write out React components in JSX.
-
-JSX is technically
-[a language that compiles to Javascipt](https://medium.com/yld-engineering-blog/getting-started-with-react-and-node-js-2d39018ebe26)
-that allows us to write code that strongly resembles HTML. It is eventually
-compiled to lightweight JavaScript objects, which are then turned into HTML on
-the page.
-
-So what you write here does eventually wind up on the page (mostly) as you wrote
-it.
-
-Your Hello component's render method:
-
-- Currently returns JSX, not HTML. The JSX creates a heading with 'Hello
-  World!'.
-- Your component reads this and renders a "Hello World!" heading.
+Let's talk about that weird HTML-like stuff that we're returning from this
+function. It looks a lot like HTML, but it's not! It's JSX,
+[an XML-lke syntax that compiles to JavaScript](https://reactjs.org/docs/introducing-jsx.html).
+We use it in React because the syntax is so nice to write. It does get compiled
+to lightweight JavaScript objects, which React uses to build the HTML that gets
+rendered in the browser.
 
 > React can be written without JSX, or with other syntax alternatives. If you
 > want to learn more,
 > [check out this blog post](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/).
 
-## Virtual DOM
+## We Do: Hello World - A Very Basic Component
 
-You may have noticed that our `src/index.js` code mentions ReactDOM. ReactDOM
-doesn't refer to the same DOM we know. Instead, it refers to a Virtual DOM. The
-Virtual DOM is a key piece of how React works.
+Let's open up the browser and visit `localhost:3000`. You'll see the starter
+code rendered in the browser.
 
-The Virtual DOM is a Javascript representation of the actual DOM. The virtual
-DOM is a staging area for changes that will eventually be implemented.
-
-- Because of that, React can keep track of changes in the actual DOM by
-  comparing different instances of the Virtual DOM.
-- React then isolates the changes between old and new instances of the Virtual
-  DOM and then only updates the actual DOM with the necessary changes.
-- By only making the "necessary changes," as opposed to re-rendering an entire
-  view altogether, it's significantly more efficient.
-- This is not unlike Git, with which you compare the difference -- or `diff` --
-  between two commits. It just happens really fast and behind the scenes a bit.
-
-![Virtual DOM Diagram](https://docs.google.com/drawings/d/11ugBTwDkqn6p2n5Fkps1p3Elp8ZToIRzXzvM4LJMYaU/pub?w=543&h=229)
-
-> If you're interested in learning more about the Virtual DOM,
-> [check this video out](https://www.youtube.com/watch?v=-DX3vJiqxm4).
-
-So we've created the template for our component. Now, let's use `/src/index.js`
-to load in our new component and render it on the DOM...
-
-```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import Hello from "./App.js";
-
-ReactDOM.render(<Hello />, document.getElementById("root"));
-```
-
-`ReactDOM.render` takes the Virtual DOM node created by `extends Component` and
-adds it to the actual DOM. It takes two arguments...
-
-1. The component.
-2. The DOM element we want to append it to.
-
-We only have to use this when "attaching" react to our html, which should only
-happen once. That's why we do it at the root of the page, so that the rest of
-our site can be built using react components.
-
-> Note: We have to use an uppercase letter when describing components in JSX.
-> Otherwise React thinks we're just writing an HTML tag.
-
-> **NOTE:** Whenever you use a self-closing tag in JSX, you **MUST** end it with
-> a `/` like `<Hello />` in the above example. Just like regular HTML!
-
----
-
-### Hello World: A Little Dynamic
-
-Our `Hello` component isn't too helpful. Let's make it more interesting.
-
-- Rather than simply display "Hello world", let's display a greeting to the
-  user.
-- So the question is, how do we feed a name to our `Hello` component without
-  hardcoding it into our render method?
-
-First, we pass in data wherever we are rendering our component, in this case in
-`src/index.js`...
-
-```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import Hello from "./App.js";
-
-ReactDOM.render(<Hello name={"Nick"} />, document.getElementById("root"));
-```
-
-Then in our component definition, we have a reference to that data via as a
-property on the `props` object...
-
-```jsx
-class Hello extends Component {
-  render() {
-    return <h1>Hello {this.props.name}</h1>;
-  }
-}
-```
-
-In the above example, we replaced "world" with `{this.props.name}`.
-
-#### What are `props`?
-
-Properties! Every component has `.props`
-
-- Properties are immutable. That is, they cannot be changed while your program
-  is running.
-- We define properties in development and pass them in as attributes to the JSX
-  element in our `.render` method.
-
-First we can pass multiple properties to our component when its rendered in
-`src/index.js`..
-
-```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import Hello from "./App.js";
-
-ReactDOM.render(
-  <Hello name={"Nick"} age={24} />,
-  document.getElementById("root")
-);
-```
-
-Then in our component definition we have access to both values...
-
-```jsx
-class Hello extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello {this.props.name}</h1>
-        <p>You are {this.props.age} years old</p>
-      </div>
-    );
-  }
-}
-```
-
-> **NOTE:** The return statement in `render` can only return one DOM element.
-> You can, however, place multiple elements within a parent DOM element, like we
-> do in the previous example with `<div>`.
-
-## You Do: A Blog Post
-
-> 10 min to work, 5 min review
-
-Let's have some practice creating a React component from scratch. How about a
-blog post?
-
-- Create a variable `post` object in `src/index.js` above `ReactDOM.render()`
-  that has the below properties.
-  1. `title`
-  2. `author`
-  3. `body`
-  4. `comments` (array of strings)
-- Create a `Post` component.
-- Render these properties using a Post component.
-- The composition of your Post is up to you.
-
-
-## Nested Components
-
-#### Q: What problems did you encounter when trying to add multiple comments to your Post?
-
-It would be a pain to have to explicitly define every comment inside of
-`<Post />`, especially if each comment itself had multiple properties, or if we
-didn't know how many comments there were.
-
-- This problem is a tell tale sign that our separation of concerns is being
-  stretched, and it's time to break things into a new component.
-
-We can nest a Comment component within a Post component.
-
-- We create these comments the same way we did with posts: `extends Component`
-  and `render`
-- Then we can reference a comment using `<Comment />` inside of Post's render
-  method.
-
-Let's create a new file for our Comment component, `src/Comment.js`...
+Let's update our `App` component to look like this:
 
 ```jsx
 import React, { Component } from "react";
 
-class Comment extends Component {
-  render() {
-    return <li>{this.props.message}</li>;
-  }
+function App() {
+  return <h1>Hello World!</h1>;
+}
+
+export default App;
+```
+
+You should see the browser change instantely. That's something that
+`create-react-app` gives to us.
+
+Not bad.
+
+## You Do: A Very Basic Component
+
+Update the `App.js` file. Try both of the following:
+
+- Change the text within the tag. Save and see what happens in the browser.
+- Change the tag (and try a couple different tags). Save and see what happens in
+  the browser.
+
+## We Do: Dynamic Hello World
+
+The way we've defined our `App` hello world component is similar to how we'll
+often define components. But it's missing one thing: data to render to the
+browser.
+
+Let's walk through making our component a little dynamic using **_props_**.
+
+First, we'll need to update how we're rendering the component in `index.js`:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.js";
+
+ReactDOM.render(<App name={"Nick"} />, document.getElementById("root"));
+```
+
+Next, we'll update our `App` component:
+
+```jsx
+import React, { Component } from "react";
+
+function App(props) {
+  return <h1>Hello {props.name}!</h1>;
+}
+
+export default App;
+```
+
+If you save and revisit the browser, you should see "Hello Nick" as an `h1` on
+the page.
+
+## Props
+
+There are two ways we manage data in React: state and props. Props are immutable
+(i.e. unchangeable) data passed in to a component. State is changeable (mutable)
+data within a component. We'll get to state when we talk about class components
+in a later lesson.
+
+For now, think of props as arguments to a function: it's data that gets passed
+into a function. The attribute syntax we see in `index.js` is how we pass data
+into a component.
+
+We can pass multiple properties to our component when its rendered in
+`src/index.js`:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.js";
+
+ReactDOM.render(
+  <App name={"Nick"} age={24} />,
+  document.getElementById("root")
+);
+```
+
+Then in our component definition we have access to both values:
+
+```jsx
+function App(props) {
+  return (
+    <div>
+      <h1>Hello {props.name}</h1>
+      <p>You are {props.age} years old</p>
+    </div>
+  );
+}
+```
+
+> **NOTE:** The return statement can only return one DOM element. You can,
+> however, place multiple elements within a parent DOM element, like we do in
+> the previous example with `<div>`.
+
+## You Do: Props
+
+Above the `return` in `App`, add the following line of code:
+`console.log(props)`
+
+Your component should look like this now:
+
+```jsx
+import React, { Component } from "react";
+
+function App(props) {
+  console.log(props);
+  return <h1>Hello {props.name}!</h1>;
+}
+
+export default App;
+```
+
+Now, in `index.js` add some props and see them printed to the console.
+
+As a bonus, write some JSX that will render the props you pass in!
+
+### Use React Developer Tools
+
+`console.logs` are useful, but in react it's better to use the React Developer
+Tools in the inspector to see the props and state of a given element.
+
+## You Do: A Blog Post
+
+Let's get some practice creating a React component from scratch. How about a
+blog post?
+
+Create a variable `post` object in `src/index.js` above `ReactDOM.render()` that
+has the below properties:
+
+1. `title`
+2. `author`
+3. `body`
+4. `comments` (array of strings)
+
+- Create a `src/Post.js` file
+- Import React inside `Post.js`
+- Create a `Post` component
+- Render these properties using the Post component
+- The composition of your Post is up to you!
+
+## Nested Components
+
+Defining all our markup within a single component would be a huge pain. Like
+writing all our HTML in a single file is!
+
+A core piece of the React philosphy is to break up the UI into many small
+components and compose them together. You want to define components that are
+small and reusable and nest them inside each other to build your UI.
+
+### We Do: A Comment Component
+
+Let's define a component for the comments that are being passed into `Post`.
+
+Our `Comment` component will be defined inside of `src/Comment.js` and look like
+this:
+
+```jsx
+import React from "react";
+
+function Comment(props) {
+  return <li>{props.message}</li>;
 }
 
 export default Comment;
 ```
 
-Then in `src/Post.js`, we need to load in our `Comment` component and render it
-inside of our `Post` component...
+The last line of `Comment.js` is how we _export_ code from one file so that we
+can _import_ it in another file.
+
+We'll update our `Post` component to look like this:
 
 ```jsx
-import React, { Component } from "react";
+import React from "react";
 import Comment from "./Comment";
 
-class Post extends Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <p>By: {this.props.author}</p>
-        <div>{this.props.body}</div>
-        <ul>
-          <Comment message={this.props.comments[0]} />
-          <Comment message={this.props.comments[1]} />
-          <Comment message={this.props.comments[2]} />
-        </ul>
-      </div>
-    );
-  }
+function Post(props) {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p>By: {props.author}</p>
+      <div>{props.body}</div>
+      <ul>
+        <Comment message={props.comments[0]} />
+        <Comment message={props.comments[1]} />
+        <Comment message={props.comments[2]} />
+      </ul>
+    </div>
+  );
 }
 
 export default Post;
 ```
-
-> **Note**: We could put all of our code in one file, but it's considered a good
-> practice to break components out into different files to help practice
-> separation of concerns. Just remember to **export** each component from its
-> file and **import** it where you want to use it!
 
 The above code works, but as you can see we have hard-coded all of our
 `Comments`. This is not very DRY.
@@ -534,31 +555,145 @@ There must be a better way!
 Since `comments` (in index.js) is an array, we can use `.map` wherever we've
 passed it down. In this case, we've got it in the props object.
 
-```js
-class Post extends Component {
-  render() {
-    let comments = this.props.comments.map((comment, index) => (
-      <Comment message={comment} key={index} />
-    ));
+```jsx
+import React from "react";
+import Comment from "./Comment";
 
-    // now comments is equal to a list of components
-    return (
-      <div className="post-page">
-        <h1>{this.props.title}</h1>
-        <h2>By {this.props.author}</h2>
-        <p>{this.props.body}</p>
-        <ul>{comments}</ul>
-      </div>
-    );
-  }
+function Post(props) {
+  let comments = props.comments.map((comment, index) => (
+    <Comment message={comment} key={index} />
+  ));
+
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p>By: {props.author}</p>
+      <div>{props.body}</div>
+      <ul>{comments}</ul>
+    </div>
+  );
 }
-```
 
----
+export default Post;
+```
 
 ## Closing
 
-- Why do we use components in React?
-- What is the Virtual DOM?
-- What is JSX?
-- What features does `create-react-app` give us?
+That's a very brief introduction to React, defining components with functions,
+and passing in data with props.
+
+## Additional Resources
+
+### Destructuring the `props` Object
+
+We have `props.something` throughout our JSX code. This can lead to a lot of
+repetition, as it kind of already has for us. JavaScript provides a way for us
+to cut down on that repetition through object destructuring.
+
+#### Destructuring
+
+Destructuring is exactly as the name suggests: _de_-structuring an object (as
+in, breaking apart it's structure). For a simple object, it looks like this:
+
+```js
+// First, we define a simple object:
+let person = {
+  name: "Big Bird",
+  age: 25
+};
+
+// Then, we 'destructure' that object:
+let { name, age } = person;
+
+// Then, we print the values to the console:
+console.log(name); // 'Big Bird'
+console.log(age); // 25
+```
+
+In the above snippet, we're declaring variables that extract the values with the
+same name from the `person` object. This part is really important: **the
+variable(s) must have the same name as the key(s) in the object.**
+
+#### Updating `Post`
+
+Using destructuring, we can now update our `Post` component, to make the JSX a
+little more legible:
+
+```jsx
+import React from "react";
+import Comment from "./Comment";
+
+function Post(props) {
+  let { title, author, body, comments } = props;
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>By: {author}</p>
+      <div>{body}</div>
+      <ul>
+        {comments.map((comment, index) => (
+          <Comment message={comment} key={index} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Post;
+```
+
+> Note that we also moved `comments.map` inline, with the JSX. You'll see this
+> pattern a lot (and use it a lot!).
+
+#### Destructuring Object Parameters
+
+Destructuring applys when an object is passed in as an argument to a function.
+This is really powerful!
+
+```js
+// First, we define a simple object:
+let person = {
+  name: "Big Bird",
+  age: 25
+};
+
+// Then, we define a function that takes that `person` object:
+function sayHello({ name, age }) {
+  console.log(`Hello ${name}, how does it feel to be ${age} years old?`);
+}
+
+// Then, we execute `sayHello` passing in `person`:
+
+sayHello(person); // 'Hello Big Bird, how does it feel to be 25 years old?'
+```
+
+If we apply this in our `Post` component, then it would look like this:
+
+```jsx
+import React from "react";
+import Comment from "./Comment";
+
+function Post({ title, author, body, comments }) {
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>By: {author}</p>
+      <div>{body}</div>
+      <ul>
+        {comments.map((comment, index) => (
+          <Comment message={comment} key={index} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Post;
+```
+
+## [License](LICENSE)
+
+1. All content is licensed under a CC­BY­NC­SA 4.0 license.
+1. All software code is licensed under GNU GPLv3. For commercial use or
+   alternative licensing, please contact legal@ga.co.
