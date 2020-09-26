@@ -383,7 +383,7 @@ browser.
 
 Let's walk through making our component a little dynamic using **_props_**.
 
-First, we'll create a new component, called `Greetings`. Create a new file in the `src` folder called `Hello.jsx`.
+First, we'll create a new component, called `Greetings`. Create a new file in the `src` folder called `Greetings.jsx`.
 
 ```jsx
 import React from "react";
