@@ -351,10 +351,12 @@ code rendered in the browser.
 Let's update our `App` component to look like this:
 
 ```jsx
-import React, { Component } from "react";
+import React from "react";
 
 function App() {
-  return <h1>Hello World!</h1>;
+  return (
+    <h1>Hello World!</h1>
+  );
 }
 
 export default App;
@@ -381,29 +383,63 @@ browser.
 
 Let's walk through making our component a little dynamic using **_props_**.
 
-First, we'll need to update how we're rendering the component in `index.js`:
+First, we'll create a new component, called `Greetings`. Create a new file in the `src` folder called `Greetings.jsx`.
 
 ```jsx
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App.js";
 
-ReactDOM.render(<App name={"Nick"} />, document.getElementById("root"));
+function Greetings(props) {
+  return (
+    <h1>Hello!</h1>
+  );
+}
 ```
 
-Next, we'll update our `App` component:
+Next, we'll update our `App` component to replace :
 
 ```jsx
-import React, { Component } from "react";
+import React from "react";
+import Greetings from "./Greetings";
 
 function App(props) {
-  return <h1>Hello {props.name}!</h1>;
+  return (
+    <Greetings />
+  );
 }
 
 export default App;
 ```
 
-If you save and revisit the browser, you should see "Hello Nick" as an `h1` on
+This funky HTML syntax above (e.g. `<Greetings />`) is JSX as well! We can import components by using the `import` statement with the proper filepath, and just like HTML, we can pass it information in key-value pairs with `props`!
+
+In `App.js`, add a `name` prop with a value of your name!
+
+```jsx
+import React from "react";
+import Greetings from "./Greetings";
+
+function App(props) {
+  return (
+    <Greetings name={"Soleil"} />
+  );
+}
+
+export default App;
+```
+
+If we want to use this `name` in `Greetings`, we can retrieve it from the props object!
+
+In `Greetings.jsx`:
+```jsx
+import React from "react";
+
+function Greetings(props) {
+  return (
+    <h1>Hello {props.name}!</h1>
+  );
+}
+```
+If you save and revisit the browser, you should see "Hello" and your name as an `h1` on
 the page.
 
 ## Props
@@ -414,32 +450,34 @@ data within a component. We'll get to state when we talk about class components
 in a later lesson.
 
 For now, think of props as arguments to a function: it's data that gets passed
-into a function. The attribute syntax we see in `index.js` is how we pass data
+into a function. The attribute syntax we see in `App.js` is how we pass data
 into a component.
 
 We can pass multiple properties to our component when its rendered in
-`src/index.js`:
+`src/App.js`:
 
 ```jsx
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App.js";
+import Greetings from "./Greetings";
 
-ReactDOM.render(
-  <App name={"Nick"} age={24} />,
-  document.getElementById("root")
-);
+function App(props) {
+  return (
+    <Greetings name={"Soleil"} age={25} />
+  );
+}
+
+export default App;
 ```
 
 Then in our component definition we have access to both values:
 
 ```jsx
-function App(props) {
+import React from "react";
+
+function Greetings(props) {
   return (
-    <div>
-      <h1>Hello {props.name}</h1>
-      <p>You are {props.age} years old</p>
-    </div>
+    <h1>Hello {props.name}!</h1>
+    <h2>I'm {props.age} years old!</h2>
   );
 }
 ```
@@ -450,23 +488,24 @@ function App(props) {
 
 ## You Do: Props
 
-Above the `return` in `App`, add the following line of code:
+Above the `return` in `Greetings`, add the following line of code:
 `console.log(props)`
 
 Your component should look like this now:
 
 ```jsx
-import React, { Component } from "react";
+import React from "react";
 
-function App(props) {
+function Greetings(props) {
   console.log(props);
-  return <h1>Hello {props.name}!</h1>;
+  return (
+    <h1>Hello {props.name}!</h1>
+    <h2>I'm {props.age} years old!</h2>
+  );
 }
-
-export default App;
 ```
 
-Now, in `index.js` add some props and see them printed to the console.
+Now, in `App.js` add some props and see them printed to the console.
 
 As a bonus, write some JSX that will render the props you pass in!
 
@@ -480,7 +519,7 @@ Tools in the inspector to see the props and state of a given element.
 Let's get some practice creating a React component from scratch. How about a
 blog post?
 
-Create a variable `post` object in `src/index.js` above `ReactDOM.render()` that
+Create a `post` object in `App.js` above `return` that
 has the below properties:
 
 1. `title`
@@ -552,7 +591,7 @@ The above code works, but as you can see we have hard-coded all of our
 
 There must be a better way!
 
-Since `comments` (in index.js) is an array, we can use `.map` wherever we've
+Since `comments` (in App.js) is an array, we can use `.map` wherever we've
 passed it down. In this case, we've got it in the props object.
 
 ```jsx
