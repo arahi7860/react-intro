@@ -238,7 +238,7 @@ skeleton that looks like this:
     ├── index.css
     ├── index.js
     ├── logo.svg
-    ├── serviceWorker.js
+    ├── reportWebVitals.js
     └── setupTests.js
 ```
 
@@ -320,8 +320,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
 ```
 
 An analogy here is the way we work with functions. First you _define_ a
@@ -352,7 +363,7 @@ code rendered in the browser.
 Let's update our `App` component to look like this:
 
 ```jsx
-import React from "react";
+import ./App.css
 
 function App() {
   return <h1>Hello World!</h1>;
@@ -386,8 +397,6 @@ First, we'll create a new component, called `Greetings`. Create a new file in
 the `src` folder called `Greetings.jsx`.
 
 ```jsx
-import React from "react";
-
 function Greetings(props) {
   return <h1>Hello!</h1>;
 }
@@ -396,7 +405,6 @@ function Greetings(props) {
 Next, we'll update our `App` component to replace :
 
 ```jsx
-import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
@@ -413,7 +421,6 @@ just like HTML, we can pass it information in key-value pairs with `props`!
 In `App.js`, add a `name` prop with a value of your name!
 
 ```jsx
-import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
@@ -429,8 +436,6 @@ object!
 In `Greetings.jsx`:
 
 ```jsx
-import React from "react";
-
 function Greetings(props) {
   return <h1>Hello {props.name}!</h1>;
 }
@@ -454,7 +459,6 @@ We can pass multiple properties to our component when its rendered in
 `src/App.js`:
 
 ```jsx
-import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
@@ -467,7 +471,7 @@ export default App;
 Then in our component definition we have access to both values:
 
 ```jsx
-import React from "react";
+
 
 function Greetings(props) {
   return (
@@ -489,7 +493,7 @@ Above the `return` in `Greetings`, add the following line of code:
 Your component should look like this now:
 
 ```jsx
-import React from "react";
+
 
 function Greetings(props) {
   console.log(props);
@@ -544,8 +548,6 @@ Our `Comment` component will be defined inside of `src/Comment.js` and look like
 this:
 
 ```jsx
-import React from "react";
-
 function Comment(props) {
   return <li>{props.message}</li>;
 }
@@ -559,7 +561,6 @@ can _import_ it in another file.
 We'll update our `Post` component to look like this:
 
 ```jsx
-import React from "react";
 import Comment from "./Comment";
 
 function Post(props) {
@@ -589,7 +590,6 @@ Since `comments` (in App.js) is an array, we can use `.map` wherever we've
 passed it down. In this case, we've got it in the props object.
 
 ```jsx
-import React from "react";
 import Comment from "./Comment";
 
 function Post(props) {
@@ -653,7 +653,6 @@ Using destructuring, we can now update our `Post` component, to make the JSX a
 little more legible:
 
 ```jsx
-import React from "react";
 import Comment from "./Comment";
 
 function Post(props) {
@@ -704,7 +703,6 @@ sayHello(person); // 'Hello Big Bird, how does it feel to be 25 years old?'
 If we apply this in our `Post` component, then it would look like this:
 
 ```jsx
-import React from "react";
 import Comment from "./Comment";
 
 function Post({ title, author, body, comments }) {
