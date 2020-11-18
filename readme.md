@@ -18,15 +18,17 @@
 
 - A framework is software providing generic functionality and structure that
   serves as foundation to build and deploy applications.
-- Express, which you'll learn next unit, is a framework that runs on the server, receives incoming requests
-  from the client, performs some work that you have defined, and returns a
-  response to the client. React is a front-end framework, which runs in the
-  browser only. It makes building complex user interfaces easier.
+- Express, which you'll learn next unit, is a framework that runs on the server,
+  receives incoming requests from the client, performs some work that you have
+  defined, and returns a response to the client. React is a front-end framework,
+  which runs in the browser only. It makes building complex user interfaces
+  easier.
 - Frameworks can help standardize code, give you additional functionality and
   performance, and can help get your code off the ground faster.
-- There are [many](https://2018.stateofjs.com/front-end-frameworks/overview/) front end frameworks
-  and each go about solving problems of how state is managed, updated, and
-  displayed on the page in their own way, but there are many commonalities.
+- There are [many](https://2018.stateofjs.com/front-end-frameworks/overview/)
+  front end frameworks and each go about solving problems of how state is
+  managed, updated, and displayed on the page in their own way, but there are
+  many commonalities.
 - There is a lot of debate over whether frontend frameworks count as frameworks
   at all -- some people say that they are just libraries and should be referred
   to as such.
@@ -61,9 +63,9 @@ how..
 
 ## Components
 
-The way we've been building our pages so far is using
-HTML or simply rendering JSON data. We display a whole page at a time, and in order to display an
-update, we have to reload the entire page.
+The way we've been building our pages so far is using HTML or simply rendering
+JSON data. We display a whole page at a time, and in order to display an update,
+we have to reload the entire page.
 
 A core part of the React philosophy is to build everything out using components,
 instead of templates.
@@ -159,8 +161,6 @@ As you're drawing this out, think about the following questions...
 - Are there any components that share the same structure?
 - Of these similar components, what is different about them?
 
-
-
 ## Initial Setup
 
 In order to create a new project and to get our development environment setup,
@@ -206,8 +206,8 @@ When creating new projects, you can run:
 ### React Blog
 
 Here you will begin setting up a blog app that you will continue working on
-during this lesson's exercises. For demonstration purposes, We will be
-creating a simple "hello world" app.
+during this lesson's exercises. For demonstration purposes, We will be creating
+a simple "hello world" app.
 
 After running `npm run start`, we can view the app at `http://localhost:3000`
 
@@ -270,7 +270,6 @@ We'll start in our `/src/App.js` file, where we should some some code that looks
 like this:
 
 ```jsx
-import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -300,8 +299,6 @@ export default App;
 
 Let's break down the things we see here.
 
-1. `import React from 'react';` - this is how we add and use React. We have to
-   import React like this at the top of every component JS file.
 1. `function App()` - this is a function (just like all the functions you've
    seen before) that is a React component. What makes it a component? The fact
    that it's using React to `return` JSX (more on that later).
@@ -309,6 +306,10 @@ Let's break down the things we see here.
    for describe a piece of UI.
 1. `export default App` - this is how we _export_ a component, so that we can
    import it elsewhere
+
+> Note: In older applications you will see `import React from 'react';` This is
+> how we used to add and use React. We had to import React like this at the top
+> of every component JS file before React 17
 
 The above is how we _define_ a component, how do we render it to the browser?
 
@@ -354,9 +355,7 @@ Let's update our `App` component to look like this:
 import React from "react";
 
 function App() {
-  return (
-    <h1>Hello World!</h1>
-  );
+  return <h1>Hello World!</h1>;
 }
 
 export default App;
@@ -383,15 +382,14 @@ browser.
 
 Let's walk through making our component a little dynamic using **_props_**.
 
-First, we'll create a new component, called `Greetings`. Create a new file in the `src` folder called `Greetings.jsx`.
+First, we'll create a new component, called `Greetings`. Create a new file in
+the `src` folder called `Greetings.jsx`.
 
 ```jsx
 import React from "react";
 
 function Greetings(props) {
-  return (
-    <h1>Hello!</h1>
-  );
+  return <h1>Hello!</h1>;
 }
 ```
 
@@ -402,15 +400,15 @@ import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
-  return (
-    <Greetings />
-  );
+  return <Greetings />;
 }
 
 export default App;
 ```
 
-This funky HTML syntax above (e.g. `<Greetings />`) is JSX as well! We can import components by using the `import` statement with the proper filepath, and just like HTML, we can pass it information in key-value pairs with `props`!
+This funky HTML syntax above (e.g. `<Greetings />`) is JSX as well! We can
+import components by using the `import` statement with the proper filepath, and
+just like HTML, we can pass it information in key-value pairs with `props`!
 
 In `App.js`, add a `name` prop with a value of your name!
 
@@ -419,28 +417,27 @@ import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
-  return (
-    <Greetings name={"Soleil"} />
-  );
+  return <Greetings name={"Soleil"} />;
 }
 
 export default App;
 ```
 
-If we want to use this `name` in `Greetings`, we can retrieve it from the props object!
+If we want to use this `name` in `Greetings`, we can retrieve it from the props
+object!
 
 In `Greetings.jsx`:
+
 ```jsx
 import React from "react";
 
 function Greetings(props) {
-  return (
-    <h1>Hello {props.name}!</h1>
-  );
+  return <h1>Hello {props.name}!</h1>;
 }
 ```
-If you save and revisit the browser, you should see "Hello" and your name as an `h1` on
-the page.
+
+If you save and revisit the browser, you should see "Hello" and your name as an
+`h1` on the page.
 
 ## Props
 
@@ -461,9 +458,7 @@ import React from "react";
 import Greetings from "./Greetings";
 
 function App(props) {
-  return (
-    <Greetings name={"Soleil"} age={25} />
-  );
+  return <Greetings name={"Soleil"} age={25} />;
 }
 
 export default App;
@@ -519,8 +514,7 @@ Tools in the inspector to see the props and state of a given element.
 Let's get some practice creating a React component from scratch. How about a
 blog post?
 
-Create a `post` object in `App.js` above `return` that
-has the below properties:
+Create a `post` object in `App.js` above `return` that has the below properties:
 
 1. `title`
 2. `author`
@@ -638,7 +632,7 @@ in, breaking apart it's structure). For a simple object, it looks like this:
 // First, we define a simple object:
 let person = {
   name: "Big Bird",
-  age: 25
+  age: 25,
 };
 
 // Then, we 'destructure' that object:
@@ -694,7 +688,7 @@ This is really powerful!
 // First, we define a simple object:
 let person = {
   name: "Big Bird",
-  age: 25
+  age: 25,
 };
 
 // Then, we define a function that takes that `person` object:
