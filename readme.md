@@ -114,39 +114,6 @@ Notice the structure of how the various components are nested.
 - DepartureBoard displays the current station and platforms
 - Trains displays the trains due to arrive at a platform
 
-### [F.I.R.S.T. Components](https://addyosmani.com/first/)
-
-Best practice is that React components follow the **F.I.R.S.T.** guidelines
-
-#### Focused
-
-Components should do one thing and do it well.
-
-#### Independent
-
-Components should increase cohesion and reduce coupling. Behavior in one
-component should not impact the behavior of another. In other words, components
-should not rely on one another.
-
-> But they should compliment one another.
-
-#### Reusable
-
-Components should be written in a way that reduces the duplication of code.
-
-#### Small
-
-Ideally, components should be short and condensed.
-
-#### Testable
-
-Because the same input will always produce the same output, components are
-easily unit testable.
-
-> If you're interested,
-> [Jest](https://facebook.github.io/jest/docs/tutorial-react.html) is a popular
-> testing library for React.
-
 ## Exercise: Identifying Components
 
 > 10 minutes exercise. 5 minutes review.
@@ -587,7 +554,7 @@ The above code works, but as you can see we have hard-coded all of our
 There must be a better way!
 
 Since `comments` (in App.js) is an array, we can use `.map` wherever we've
-passed it down. In this case, we've got it in the props object.
+passed it down. The `.map` method can take an array of elements and turn each one into a piece of JSX or a React component. In this case, we'll `.map` through to create one `<Comment />` for each `comment`.
 
 ```jsx
 import Comment from "./Comment";
