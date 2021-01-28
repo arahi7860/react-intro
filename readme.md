@@ -118,7 +118,7 @@ Notice the structure of how the various components are nested.
 
 > 10 minutes exercise. 5 minutes review.
 
-- Break into groups of three and take a look at Facebook, Craigslist, Ebay, or a
+- Break into groups of three and take a look at Airbnb, Craigslist, Ebay, or a
   website of your choice. Identify the visual "components" the website is
   comprised of. Use markers to draw these out on the wall.
 
@@ -151,11 +151,7 @@ to worry more about our code and less about configuration:
 
 The [offical React docs](https://reactjs.org/docs/create-a-new-react-app.html)
 suggest using `npx`, a modern javascript package runner, to run
-`create-react-app`. We can install `npx` with the following command:
-
-```sh
-➜ npm i -g npx
-```
+`create-react-app`. `npx` is already available via `npm`.
 
 The benefits here are that you do not need to install `create-react-app`
 locally, and you will always be installing the latest version of
@@ -412,6 +408,8 @@ In `Greetings.jsx`:
 function Greetings(props) {
   return <h1>Hello {props.name}!</h1>;
 }
+
+export default Greetings;
 ```
 
 If you save and revisit the browser, you should see "Hello" and your name as an
