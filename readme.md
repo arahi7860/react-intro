@@ -278,6 +278,8 @@ Let's break down the things we see here.
 > how we used to add and use React. We had to import React like this at the top
 > of every component JS file before React 17
 
+Any easy way to remember the four things you need is FIRE (function, import (sometimes), return, export).
+
 The above is how we _define_ a component, how do we render it to the browser?
 
 For that, we have to look at `index.js`:
@@ -330,7 +332,7 @@ code rendered in the browser.
 Let's update our `App` component to look like this:
 
 ```jsx
-import ./App.css
+import "./App.css";
 
 function App() {
   return <h1>Hello World!</h1>;
@@ -367,6 +369,8 @@ the `src` folder called `Greetings.jsx`.
 function Greetings(props) {
   return <h1>Hello!</h1>;
 }
+
+export default Greetings;
 ```
 
 Next, we'll update our `App` component to replace :
@@ -397,6 +401,8 @@ function App(props) {
 export default App;
 ```
 
+We can now say that the Greetings component has a prop called `name` with a value of `Soleil`.
+
 If we want to use this `name` in `Greetings`, we can retrieve it from the props
 object!
 
@@ -422,7 +428,7 @@ For now, think of props as arguments to a function: it's data that gets passed
 into a function. The attribute syntax we see in `App.js` is how we pass data
 into a component.
 
-We can pass multiple properties to our component when its rendered in
+We can pass multiple properties to our component when it's rendered in
 `src/App.js`:
 
 ```jsx
@@ -438,14 +444,14 @@ export default App;
 Then in our component definition we have access to both values:
 
 ```jsx
-
-
 function Greetings(props) {
   return (
     <h1>Hello {props.name}!</h1>
     <h2>I'm {props.age} years old!</h2>
   );
 }
+
+export default Greetings;
 ```
 
 > **NOTE:** The return statement can only return one DOM element. You can,
@@ -460,8 +466,6 @@ Above the `return` in `Greetings`, add the following line of code:
 Your component should look like this now:
 
 ```jsx
-
-
 function Greetings(props) {
   console.log(props);
   return (
@@ -469,6 +473,8 @@ function Greetings(props) {
     <h2>I'm {props.age} years old!</h2>
   );
 }
+
+export default Greetings;
 ```
 
 Now, in `App.js` add some props and see them printed to the console.
@@ -477,7 +483,7 @@ As a bonus, write some JSX that will render the props you pass in!
 
 ### Use React Developer Tools
 
-`console.logs` are useful, but in react it's better to use the React Developer
+`console.logs` are useful, but in React it's better to use the React Developer
 Tools in the inspector to see the props and state of a given element.
 
 ## You Do: A Blog Post
@@ -485,15 +491,14 @@ Tools in the inspector to see the props and state of a given element.
 Let's get some practice creating a React component from scratch. How about a
 blog post?
 
-Create a `post` object in `App.js` above `return` that has the below properties:
+Create a `post` object in `App.js` above `return` (but still within the App function) that has the below properties:
 
 1. `title`
 2. `author`
 3. `body`
 4. `comments` (array of strings)
 
-- Create a `src/Post.js` file
-- Import React inside `Post.js`
+- Create a file in `src` called `Post.jsx`.
 - Create a `Post` component
 - Render these properties using the Post component
 - The composition of your Post is up to you!
@@ -511,7 +516,7 @@ small and reusable and nest them inside each other to build your UI.
 
 Let's define a component for the comments that are being passed into `Post`.
 
-Our `Comment` component will be defined inside of `src/Comment.js` and look like
+Our `Comment` component will be defined inside of `src/Comment.jsx` and look like
 this:
 
 ```jsx
@@ -522,7 +527,7 @@ function Comment(props) {
 export default Comment;
 ```
 
-The last line of `Comment.js` is how we _export_ code from one file so that we
+The last line of `Comment.jsx` is how we _export_ code from one file so that we
 can _import_ it in another file.
 
 We'll update our `Post` component to look like this:
@@ -560,7 +565,7 @@ passed it down. The `.map` method can take an array of elements and turn each on
 import Comment from "./Comment";
 
 function Post(props) {
-  let comments = props.comments.map((comment, index) => (
+  const comments = props.comments.map((comment, index) => (
     <Comment message={comment} key={index} />
   ));
 
@@ -570,6 +575,29 @@ function Post(props) {
       <p>By: {props.author}</p>
       <div>{props.body}</div>
       <ul>{comments}</ul>
+    </div>
+  );
+}
+
+export default Post;
+```
+
+However, it can be more convenient to run your .map() statement directly within the return, as opposed to assigning it to a variable:
+
+```jsx
+import Comment from "./Comment";
+
+function Post(props) {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p>By: {props.author}</p>
+      <div>{props.body}</div>
+      <ul>
+        {props.comments.map((comment, index) => (
+          <Comment message={comment} key={index} />
+        ))}
+      </ul>
     </div>
   );
 }
