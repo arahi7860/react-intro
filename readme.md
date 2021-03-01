@@ -498,7 +498,7 @@ Create a `newPost` object in `App.js` above the `return` (but still within the A
 
 - Create a file in `src` called `Post.jsx`.
 - Create a `Post` component, and have it return a `<div>`.
-- Import `Post` from `Post.jsx` in App, and pass it a prop of ``
+- Import `Post` from `Post.jsx` in App, and pass it a prop of `title` with a value of `newPost.title`. Do this for each property of the `newPost` object.
 - Render the `title` in an `<h1>`. (Remember your {}!)
 - Render the `author` in a `<p>`.
 - Render the `body` in a `<div>`.
