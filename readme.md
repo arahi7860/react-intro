@@ -489,7 +489,7 @@ Tools in the inspector to see the props and state of a given element.
 Let's get some practice creating a React component from scratch. How about a
 blog post?
 
-Create a `post` object in `App.js` above `return` (but still within the App function) that has the below properties:
+Create a `newPost` object in `App.js` above the `return` (but still within the App function) that has the below properties:
 
 1. `title`
 2. `author`
@@ -497,9 +497,40 @@ Create a `post` object in `App.js` above `return` (but still within the App func
 4. `comments` (array of strings)
 
 - Create a file in `src` called `Post.jsx`.
-- Create a `Post` component
-- Render these properties using the Post component
-- The composition of your Post is up to you!
+- Create a `Post` component, and have it return a `<div>`.
+- Import `Post` from `Post.jsx` in App, and pass it a prop of `title` with a value of `newPost.title`. Do this for each property of the `newPost` object.
+- Render the `title` in an `<h1>`. (Remember your {}!)
+- Render the `author` in a `<p>`.
+- Render the `body` in a `<div>`.
+- Create a `<ul>`, and render the first of the `comments` in a `<ul>`.
+
+<details>
+  <summary>Solution</summary>
+  
+In App.js:
+```jsx
+<Post title={newPost.title} author={newPost.author} body={newPost.body} comments={newPost.comments} />
+```
+
+In Post.jsx:
+```jsx
+function Post(props) {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p>By: {props.author}</p>
+      <div>{props.body}</div>
+      <ul>
+        <li>{props.comments[0]}</li>
+      </ul>
+    </div>
+  );
+}
+
+export default Post;
+```
+
+</details>
 
 ## Nested Components
 
