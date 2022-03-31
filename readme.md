@@ -7,7 +7,7 @@
 ## Learning Objectives
 
 - Explain what a frontend framework is and why they can be helpful in writing
-  more complex applications.
+    more complex applications.
 - Explain what ReactJS is and where it fits in our applications' stack.
 - Explain the component model of web development.
 - Create and render React components in the browser.
@@ -17,21 +17,20 @@
 ### What is a Frontend Framework?
 
 - A framework is software providing generic functionality and structure that
-  serves as foundation to build and deploy applications.
-- Express, which you'll learn next unit, is a framework that runs on the server,
-  receives incoming requests from the client, performs some work that you have
-  defined, and returns a response to the client. React is a front-end framework,
-  which runs in the browser only. It makes building complex user interfaces
-  easier.
+    serves as foundation to build and deploy applications.
+- Express is a framework that runs on the server, receives incoming requests
+    from the client, performs some work that you have defined, and returns a
+    response to the client. React is a front-end framework, which runs in the
+    browser only. It makes building complex user interfaces easier. 
 - Frameworks can help standardize code, give you additional functionality and
-  performance, and can help get your code off the ground faster.
+    performance, and can help get your code off the ground faster.
 - There are [many](https://2018.stateofjs.com/front-end-frameworks/overview/)
-  front end frameworks and each go about solving problems of how state is
-  managed, updated, and displayed on the page in their own way, but there are
-  many commonalities.
+    front end frameworks and each go about solving problems of how state is
+    managed, updated, and displayed on the page in their own way, but there are
+    many commonalities.
 - There is a lot of debate over whether frontend frameworks count as frameworks
-  at all -- some people say that they are just libraries and should be referred
-  to as such.
+    at all -- some people say that they are just libraries and should be referred
+    to as such.
 
 ### What is ReactJS?
 
@@ -50,16 +49,16 @@ The first thing most people hear about React is "Facebook uses it."
 - Then Instagram in 2012.
 - Went open source in May 2013.
 
-React was born out of Facebook's frustration with the traditional MVC model and
-how..
+    React was born out of Facebook's frustration with the traditional MVC model and
+    how..
 
 - Re-rendering something meant re-rendering everything (or just a lot).
 - That had negative implications on processing power and ultimately user
-  experience, which at times became glitchy and laggy.
+    experience, which at times became glitchy and laggy.
 
-> If you want to get a taste of what React is all about,
-> [here's an introduction from React.js Conf 2015](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510).
-> Recommend starting around the 8:35 mark and watching until 16:30.
+    > If you want to get a taste of what React is all about,
+    > [here's an introduction from React.js Conf 2015](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510).
+    > Recommend starting around the 8:35 mark and watching until 16:30.
 
 ## Components
 
@@ -119,10 +118,10 @@ Notice the structure of how the various components are nested.
 > 10 minutes exercise. 5 minutes review.
 
 - Break into groups of three and take a look at Airbnb, Craigslist, Ebay, or a
-  website of your choice. Identify the visual "components" the website is
-  comprised of. Use markers to draw these out on the wall.
+    website of your choice. Identify the visual "components" the website is
+    comprised of. Use markers to draw these out on the wall.
 
-As you're drawing this out, think about the following questions...
+    As you're drawing this out, think about the following questions...
 
 - Where do you see "nested components"? Where do you not?
 - Are there any components that share the same structure?
@@ -136,10 +135,11 @@ new folder in your current directory for the in-class application.
 
 `create-react-app` is an NPM package also built by Facebook that writes our
 build dependencies for us so that we can do less configuration. It allows us to
-use React, JSX, and ES6. It also allows us to import our CSS, it autoprefixes
-our CSS so that we don't have to worry about cross browser compatibility, it
-gives us a dev server to run, and it enables hot reloading which updates the
-code in our browser without us refreshing the page.
+use React, [JSX](https://reactjs.org/docs/introducing-jsx.html), and
+[ES6](https://en.wikipedia.org/wiki/ECMAScript). It also allows us to import our
+CSS, it autoprefixes our CSS so that we don't have to worry about cross browser
+compatibility, it gives us a dev server to run, and it enables hot reloading
+which updates the code in our browser without us refreshing the page.
 
 It uses Webpack which is a build tool that enables many of the features listed
 above. It also includes Babel which transpiles our JavaScript from ES6 to be
@@ -195,14 +195,14 @@ skeleton that looks like this:
 │   ├── manifest.json
 │   └── robots.txt
 └── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    ├── reportWebVitals.js
-    └── setupTests.js
+   ├── App.css
+   ├── App.js
+   ├── App.test.js
+   ├── index.css
+   ├── index.js
+   ├── logo.svg
+   ├── reportWebVitals.js
+   └── setupTests.js
 ```
 
 Most of the important files, which are primarily the ones where we will be
@@ -237,24 +237,24 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+return (
+<div className="App">
+<header className="App-header">
+<img src={logo} className="App-logo" alt="logo" />
+<p>
+Edit <code>src/App.js</code> and save to reload.
+</p>
+<a
+className="App-link"
+href="https://reactjs.org"
+target="_blank"
+rel="noopener noreferrer"
+>
+Learn React
+</a>
+</header>
+</div>
+);
 }
 
 export default App;
@@ -263,12 +263,12 @@ export default App;
 Let's break down the things we see here.
 
 1. `function App()` - this is a function (just like all the functions you've
-   seen before) that is a React component. What makes it a component? The fact
-   that it's using React to `return` JSX (more on that later).
+seen before) that is a React component. What makes it a component? The fact
+that it's using React to `return` JSX (more on that later).
 1. `return ( ... )` - Components **must** return JSX, an XML/HTML -like syntax
-   for describe a piece of UI.
+for describe a piece of UI.
 1. `export default App` - this is how we _export_ a component, so that we can
-   import it elsewhere
+import it elsewhere
 
 > Note: In older applications you will see `import React from 'react';` This is
 > how we used to add and use React. We had to import React like this at the top
@@ -288,10 +288,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+<React.StrictMode>
+<App />
+</React.StrictMode>,
+document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -331,7 +331,7 @@ Let's update our `App` component to look like this:
 import "./App.css";
 
 function App() {
-  return <h1>Hello World!</h1>;
+return <h1>Hello World!</h1>;
 }
 
 export default App;
@@ -348,7 +348,7 @@ Update the `App.js` file. Try both of the following:
 
 - Change the text within the tag. Save and see what happens in the browser.
 - Change the tag (and try a couple different tags). Save and see what happens in
-  the browser.
+    the browser.
 
 ## We Do: Dynamic Hello World
 
@@ -363,7 +363,7 @@ the `src` folder called `Greetings.jsx`.
 
 ```jsx
 function Greetings(props) {
-  return <h1>Hello!</h1>;
+return <h1>Hello!</h1>;
 }
 
 export default Greetings;
@@ -375,7 +375,7 @@ Next, we'll update our `App` component to replace :
 import Greetings from "./Greetings";
 
 function App(props) {
-  return <Greetings />;
+return <Greetings />;
 }
 
 export default App;
@@ -391,7 +391,7 @@ In `App.js`, add a `name` prop with a value of your name!
 import Greetings from "./Greetings";
 
 function App(props) {
-  return <Greetings name={"Soleil"} />;
+return <Greetings name={"Soleil"} />;
 }
 
 export default App;
@@ -406,7 +406,7 @@ In `Greetings.jsx`:
 
 ```jsx
 function Greetings(props) {
-  return <h1>Hello {props.name}!</h1>;
+return <h1>Hello {props.name}!</h1>;
 }
 
 export default Greetings;
@@ -433,7 +433,7 @@ We can pass multiple properties to our component when it's rendered in
 import Greetings from "./Greetings";
 
 function App(props) {
-  return <Greetings name={"Soleil"} age={25} />;
+return <Greetings name={"Soleil"} age={25} />;
 }
 
 export default App;
@@ -443,10 +443,10 @@ Then in our component definition we have access to both values:
 
 ```jsx
 function Greetings(props) {
-  return (
-    <h1>Hello {props.name}!</h1>
-    <h2>I'm {props.age} years old!</h2>
-  );
+return (
+<h1>Hello {props.name}!</h1>
+<h2>I'm {props.age} years old!</h2>
+);
 }
 
 export default Greetings;
@@ -465,11 +465,11 @@ Your component should look like this now:
 
 ```jsx
 function Greetings(props) {
-  console.log(props);
-  return (
-    <h1>Hello {props.name}!</h1>
-    <h2>I'm {props.age} years old!</h2>
-  );
+console.log(props);
+return (
+<h1>Hello {props.name}!</h1>
+<h2>I'm {props.age} years old!</h2>
+);
 }
 
 export default Greetings;
@@ -504,33 +504,33 @@ Create a `newPost` object in `App.js` above the `return` (but still within the A
 - Render the `body` in a `<div>`.
 - Create a `<ul>`, and render the first of the `comments` in a `<ul>`.
 
-<details>
-  <summary>Solution</summary>
-  
-In App.js:
-```jsx
-<Post title={newPost.title} author={newPost.author} body={newPost.body} comments={newPost.comments} />
-```
+    <details>
+    <summary>Solution</summary>
 
-In Post.jsx:
-```jsx
-function Post(props) {
-  return (
+    In App.js:
+    ```jsx
+    <Post title={newPost.title} author={newPost.author} body={newPost.body} comments={newPost.comments} />
+    ```
+
+    In Post.jsx:
+    ```jsx
+    function Post(props) {
+    return (
     <div>
-      <h1>{props.title}</h1>
-      <p>By: {props.author}</p>
-      <div>{props.body}</div>
-      <ul>
-        <li>{props.comments[0]}</li>
-      </ul>
+    <h1>{props.title}</h1>
+    <p>By: {props.author}</p>
+    <div>{props.body}</div>
+    <ul>
+    <li>{props.comments[0]}</li>
+    </ul>
     </div>
-  );
-}
+    );
+    }
 
-export default Post;
-```
+    export default Post;
+    ```
 
-</details>
+    </details>
 
 ## Nested Components
 
@@ -550,7 +550,7 @@ this:
 
 ```jsx
 function Comment(props) {
-  return <li>{props.message}</li>;
+return <li>{props.message}</li>;
 }
 
 export default Comment;
@@ -565,18 +565,18 @@ We'll update our `Post` component to look like this:
 import Comment from "./Comment";
 
 function Post(props) {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      <p>By: {props.author}</p>
-      <div>{props.body}</div>
-      <ul>
-        <Comment message={props.comments[0]} />
-        <Comment message={props.comments[1]} />
-        <Comment message={props.comments[2]} />
-      </ul>
-    </div>
-  );
+return (
+<div>
+<h1>{props.title}</h1>
+<p>By: {props.author}</p>
+<div>{props.body}</div>
+<ul>
+<Comment message={props.comments[0]} />
+<Comment message={props.comments[1]} />
+<Comment message={props.comments[2]} />
+</ul>
+</div>
+);
 }
 
 export default Post;
@@ -594,18 +594,18 @@ passed it down. The `.map` method can take an array of elements and turn each on
 import Comment from "./Comment";
 
 function Post(props) {
-  const comments = props.comments.map((comment, index) => (
-    <Comment message={comment} key={index} />
-  ));
+const comments = props.comments.map((comment, index) => (
+<Comment message={comment} key={index} />
+));
 
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      <p>By: {props.author}</p>
-      <div>{props.body}</div>
-      <ul>{comments}</ul>
-    </div>
-  );
+return (
+<div>
+<h1>{props.title}</h1>
+<p>By: {props.author}</p>
+<div>{props.body}</div>
+<ul>{comments}</ul>
+</div>
+);
 }
 
 export default Post;
@@ -617,18 +617,18 @@ However, it can be more convenient to run your .map() statement directly within 
 import Comment from "./Comment";
 
 function Post(props) {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      <p>By: {props.author}</p>
-      <div>{props.body}</div>
-      <ul>
-        {props.comments.map((comment, index) => (
-          <Comment message={comment} key={index} />
-        ))}
-      </ul>
-    </div>
-  );
+return (
+<div>
+<h1>{props.title}</h1>
+<p>By: {props.author}</p>
+<div>{props.body}</div>
+<ul>
+{props.comments.map((comment, index) => (
+<Comment message={comment} key={index} />
+))}
+</ul>
+</div>
+);
 }
 
 export default Post;
@@ -655,8 +655,8 @@ in, breaking apart it's structure). For a simple object, it looks like this:
 ```js
 // First, we define a simple object:
 let person = {
-  name: "Big Bird",
-  age: 25,
+name: "Big Bird",
+age: 25,
 };
 
 // Then, we 'destructure' that object:
@@ -680,20 +680,20 @@ little more legible:
 import Comment from "./Comment";
 
 function Post(props) {
-  let { title, author, body, comments } = props;
+let { title, author, body, comments } = props;
 
-  return (
-    <div>
-      <h1>{title}</h1>
-      <p>By: {author}</p>
-      <div>{body}</div>
-      <ul>
-        {comments.map((comment, index) => (
-          <Comment message={comment} key={index} />
-        ))}
-      </ul>
-    </div>
-  );
+return (
+<div>
+<h1>{title}</h1>
+<p>By: {author}</p>
+<div>{body}</div>
+<ul>
+{comments.map((comment, index) => (
+<Comment message={comment} key={index} />
+))}
+</ul>
+</div>
+);
 }
 
 export default Post;
@@ -710,13 +710,13 @@ This is really powerful!
 ```js
 // First, we define a simple object:
 let person = {
-  name: "Big Bird",
-  age: 25,
+name: "Big Bird",
+age: 25,
 };
 
 // Then, we define a function that takes that `person` object:
 function sayHello({ name, age }) {
-  console.log(`Hello ${name}, how does it feel to be ${age} years old?`);
+console.log(`Hello ${name}, how does it feel to be ${age} years old?`);
 }
 
 // Then, we execute `sayHello` passing in `person`:
@@ -730,18 +730,18 @@ If we apply this in our `Post` component, then it would look like this:
 import Comment from "./Comment";
 
 function Post({ title, author, body, comments }) {
-  return (
-    <div>
-      <h1>{title}</h1>
-      <p>By: {author}</p>
-      <div>{body}</div>
-      <ul>
-        {comments.map((comment, index) => (
-          <Comment message={comment} key={index} />
-        ))}
-      </ul>
-    </div>
-  );
+return (
+<div>
+<h1>{title}</h1>
+<p>By: {author}</p>
+<div>{body}</div>
+<ul>
+{comments.map((comment, index) => (
+<Comment message={comment} key={index} />
+))}
+</ul>
+</div>
+);
 }
 
 export default Post;
@@ -751,4 +751,4 @@ export default Post;
 
 1. All content is licensed under a CC­BY­NC­SA 4.0 license.
 1. All software code is licensed under GNU GPLv3. For commercial use or
-   alternative licensing, please contact legal@ga.co.
+alternative licensing, please contact legal@ga.co.
